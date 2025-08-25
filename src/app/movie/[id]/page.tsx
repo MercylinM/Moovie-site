@@ -10,7 +10,6 @@ import { TrailerPlayer } from "@/app/components/TrailerPlayer";
 import { CastList } from "@/app/components/CastList ";
 import { MovieCard } from "@/app/components/MovieCard";
 import { Footer } from "@/app/components/Footer";
-import Link from "next/link";
 import Image from "next/image";
 
 export default function MoviePage() {
@@ -28,11 +27,9 @@ export default function MoviePage() {
                 const movieDetails = await fetchMovieDetails(Number(movieId));
                 setMovie(movieDetails);
 
-                // Fetch similar movies
                 const similarData = await searchMovies(movieDetails.title, 1);
                 setSimilarMovies(similarData.results.filter(m => m.id !== movieDetails.id).slice(0, 6));
 
-                // Load favorites from localStorage
                 const savedFavorites = localStorage.getItem("favorites");
                 if (savedFavorites) {
                     setFavorites(JSON.parse(savedFavorites));
@@ -69,8 +66,8 @@ export default function MoviePage() {
             <div className="min-h-screen bg-background flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold mb-4">Movie not found</h1>
-                    <Button asChild>
-                        <Link href="/">Back to Home</Link>
+                    <Button href="/" variant="destructive" size="lg" className="mt-4">
+                        Back to Home
                     </Button>
                 </div>
             </div>
@@ -93,6 +90,7 @@ export default function MoviePage() {
                                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                 alt={movie.title}
                                 className="w-full h-full object-cover"
+                                fill
                             />
                         </div>
                     </div>

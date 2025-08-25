@@ -1,4 +1,4 @@
-import { Cast } from "@/app/utils/types";
+import { Cast } from "@/app/utils/fetchData";
 import Image from "next/image";
 import Link from "next/link";
 

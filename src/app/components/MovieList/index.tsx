@@ -1,4 +1,5 @@
-import { Movie } from "@/app/utils/types";
+
+import { Movie } from "@/app/utils/fetchData";
 import { MovieCard } from "../MovieCard";
 
 

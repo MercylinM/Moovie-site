@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Play, Star } from "lucide-react";
 import { Button } from "../Button";
-import { Movie } from "@/app/utils/types";
+import { Movie } from "@/app/utils/fetchData";
 
 interface HeroSectionProps {
     movie: Movie;

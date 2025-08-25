@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/app/utils/utils";
 
@@ -31,17 +32,30 @@ const buttonVariants = cva(
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+    href?: string; 
     asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, asChild = false, ...props }, ref) => {
+    ({ className, variant, size, href, children, ...props }, ref) => {
+        const buttonClassName = cn(buttonVariants({ variant, size, className }));
+
+        if (href) {
+            return (
+                <Link href={href} className={buttonClassName}>
+                    {children}
+                </Link>
+            );
+        }
+
         return (
             <button
-                className={cn(buttonVariants({ variant, size, className }))}
+                className={buttonClassName}
                 ref={ref}
                 {...props}
-            />
+            >
+                {children}
+            </button>
         );
     }
 );

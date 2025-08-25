@@ -6,7 +6,6 @@ import { Header } from "../components/Header";
 import { Button } from "../components/Button";
 import { MovieList } from "../components/MovieList";
 import { Footer } from "../components/Footer";
-import Link from "next/link";
 
 export default function FavoritesPage() {
     const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
@@ -16,14 +15,12 @@ export default function FavoritesPage() {
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
-                // Load favorites from localStorage
                 const savedFavorites = localStorage.getItem("favorites");
                 if (savedFavorites) {
                     const favIds = JSON.parse(savedFavorites);
                     setFavorites(favIds);
 
                     if (favIds.length > 0) {
-                        // Fetch details for each favorite movie
                         const moviePromises = favIds.map((id: number) => fetchMovieDetails(id));
                         const movies = await Promise.all(moviePromises);
                         setFavoriteMovies(movies);
@@ -47,7 +44,6 @@ export default function FavoritesPage() {
         setFavorites(newFavorites);
         localStorage.setItem("favorites", JSON.stringify(newFavorites));
 
-        // Update the displayed movies
         if (favorites.includes(id)) {
             setFavoriteMovies(favoriteMovies.filter(movie => movie.id !== id));
         }
@@ -89,9 +85,10 @@ export default function FavoritesPage() {
                 ) : (
                     <div className="text-center py-12">
                         <p className="text-lg mb-4">You haven&apos;t added any movies to your favorites yet</p>
-                        <Button asChild>
-                            <Link href="/">Browse Movies</Link>
+                        <Button href="/" variant="destructive" size="lg" className="mt-4">
+                            Browse Movies
                         </Button>
+
                     </div>
                 )}
             </main>

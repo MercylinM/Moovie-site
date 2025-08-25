@@ -35,7 +35,6 @@ function SearchResults() {
                 setMovies(data.results);
                 setTotalPages(data.total_pages);
 
-                // Load favorites from localStorage
                 const savedFavorites = localStorage.getItem("favorites");
                 if (savedFavorites) {
                     setFavorites(JSON.parse(savedFavorites));
