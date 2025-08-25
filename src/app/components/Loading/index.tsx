@@ -1,4 +1,3 @@
-// Create a LoadingSkeleton component
 export function LoadingSkeleton() {
     return (
         <div className="animate-pulse">

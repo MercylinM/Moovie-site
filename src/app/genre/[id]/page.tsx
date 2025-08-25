@@ -7,10 +7,6 @@ import { fetchMovieGenres, fetchMoviesByGenre, Movie } from "@/app/utils/fetchDa
 import { Header } from "@/app/components/Header";
 import { MovieList } from "@/app/components/MovieList";
 import { Footer } from "@/app/components/Footer";
-// import { Header } from "@/components/header";
-// import { Footer } from "@/components/footer";
-// import { MovieList } from "@/components/movie-list";
-// import { fetchMoviesByGenre, fetchMovieGenres, Movie } from "@/lib/tmdb";
 
 export default function GenrePage() {
     const params = useParams();
@@ -23,11 +19,9 @@ export default function GenrePage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch movies for this genre
                 const movieData = await fetchMoviesByGenre(Number(genreId));
                 setMovies(movieData.results);
 
-                // Fetch genre name
                 const genresData = await fetchMovieGenres();
                 const genre = genresData.genres.find(g => g.id === Number(genreId));
                 if (genre) {

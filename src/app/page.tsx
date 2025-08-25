@@ -19,13 +19,11 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Define fetchData with useCallback to make it stable and reusable
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Fetch featured movie (first from popular)
       const popularData = await fetchPopularMovies();
       setPopularMovies(popularData.results);
 
@@ -35,7 +33,6 @@ export default function HomePage() {
         setFeaturedMovie(featuredDetails);
       }
 
-      // Fetch other categories
       const trendingData = await fetchTrendingMovies();
       setTrendingMovies(trendingData.results);
 
@@ -45,7 +42,6 @@ export default function HomePage() {
       const upcomingData = await fetchUpcomingMovies();
       setUpcomingMovies(upcomingData.results);
 
-      // Load favorites from localStorage
       const savedFavorites = localStorage.getItem("favorites");
       if (savedFavorites) {
         setFavorites(JSON.parse(savedFavorites));
@@ -58,7 +54,6 @@ export default function HomePage() {
     }
   }, []);
 
-  // Initial data fetch
   useEffect(() => {
     fetchData();
   }, [fetchData]);

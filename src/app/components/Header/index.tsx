@@ -50,9 +50,6 @@ export function Header() {
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                            <span className="text-primary-foreground font-bold text-lg">M</span>
-                        </div>
                         <span className="text-2xl font-bold text-foreground">Moovie</span>
                     </Link>
 
@@ -91,7 +88,6 @@ export function Header() {
                 <div className="container mx-auto px-4">
                     <nav className="flex space-x-8 py-4 overflow-x-auto">
                         {loading ? (
-                            // Loading skeleton for categories
                             Array.from({ length: 7 }).map((_, index) => (
                                 <div
                                     key={index}

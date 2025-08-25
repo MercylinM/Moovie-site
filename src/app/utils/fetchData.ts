@@ -5,7 +5,6 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = "fb0e15ab183b560110725b6bd51533fe"
 const BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYjBlMTVhYjE4M2I1NjAxMTA3MjViNmJkNTE1MzNmZSIsIm5iZiI6MTc1NTk2NjAzOC4yMTIsInN1YiI6IjY4YTllYTU2YzZkZjBmZWIxYTZjZGY4MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.U - 2Fc0oSTUVuEnnGK7vBPBWB8jk73k6GQWFo7QKeNJo"
 
-// Common headers for all requests
 const headers = {
     accept: 'application/json',
     Authorization: `Bearer ${BEARER_TOKEN}`
@@ -44,11 +43,9 @@ export interface Cast {
     profile_path: string | null;
 }
 
-// Helper function for API requests
 async function apiRequest<T>(endpoint: string, params?: Record<string, string>): Promise<T> {
     const url = new URL(`${BASE_URL}${endpoint}`);
 
-    // Add API key as a query parameter (required for v3 API)
     if (API_KEY) {
         url.searchParams.append('api_key', API_KEY);
     }
@@ -61,7 +58,6 @@ async function apiRequest<T>(endpoint: string, params?: Record<string, string>):
         });
     }
 
-    // Check if we have authentication
     if (!BEARER_TOKEN && !API_KEY) {
         throw new Error('TMDB API credentials not found. Please add TMDB_BEARER_TOKEN or TMDB_API_KEY to your environment variables.');
     }
@@ -99,7 +95,6 @@ export async function fetchMoviesByGenre(genreId: number, page = 1): Promise<{ r
     });
 }
 
-// Additional API functions
 export async function fetchTrendingMovies(timeWindow: 'day' | 'week' = 'day', page = 1): Promise<{ results: Movie[]; total_pages: number }> {
     return apiRequest(`/trending/movie/${timeWindow}`, { page: page.toString() });
 }
