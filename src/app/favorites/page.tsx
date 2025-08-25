@@ -6,6 +6,7 @@ import { Header } from "../components/Header";
 import { Button } from "../components/Button";
 import { MovieList } from "../components/MovieList";
 import { Footer } from "../components/Footer";
+import Link from "next/link";
 
 export default function FavoritesPage() {
     const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
@@ -87,9 +88,9 @@ export default function FavoritesPage() {
                     />
                 ) : (
                     <div className="text-center py-12">
-                        <p className="text-lg mb-4">You haven't added any movies to your favorites yet</p>
+                        <p className="text-lg mb-4">You haven&apos;t added any movies to your favorites yet</p>
                         <Button asChild>
-                            <a href="/">Browse Movies</a>
+                            <Link href="/">Browse Movies</Link>
                         </Button>
                     </div>
                 )}

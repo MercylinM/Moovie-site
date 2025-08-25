@@ -10,6 +10,8 @@ import { TrailerPlayer } from "@/app/components/TrailerPlayer";
 import { CastList } from "@/app/components/CastList ";
 import { MovieCard } from "@/app/components/MovieCard";
 import { Footer } from "@/app/components/Footer";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function MoviePage() {
     const params = useParams();
@@ -68,7 +70,7 @@ export default function MoviePage() {
                 <div className="text-center">
                     <h1 className="text-2xl font-bold mb-4">Movie not found</h1>
                     <Button asChild>
-                        <a href="/">Back to Home</a>
+                        <Link href="/">Back to Home</Link>
                     </Button>
                 </div>
             </div>
@@ -87,7 +89,7 @@ export default function MoviePage() {
                 <div className="flex flex-col md:flex-row gap-8 mb-10">
                     <div className="md:w-1/3">
                         <div className="relative aspect-[2/3] rounded-lg overflow-hidden">
-                            <img
+                            <Image
                                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                 alt={movie.title}
                                 className="w-full h-full object-cover"

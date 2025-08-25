@@ -135,7 +135,7 @@ function SearchResults() {
                     </>
                 ) : query ? (
                     <div className="text-center py-12">
-                        <p className="text-lg mb-4">No movies found matching "{query}"</p>
+                        <p className="text-lg mb-4">No movies found matching &quot;{query}&quot;</p>
                         <p>Try a different search term</p>
                     </div>
                 ) : (
